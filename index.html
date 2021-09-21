@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hogwarts</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merienda:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main>
+        <section id="section-house">
+            <div class="house-text-container">
+                <h1 class="house-text-house">Hogwarts</h1>
+                <h2 class="house-text-class">Class of 1991</h2>
+                <h2 class="house-text-students">Students:</h2>
+            </div>
+            <div class="house-img-container">
+                <img class="house-img" src="images/crests/hogwarts-crest.svg" alt="Hogwarts Crest">
+            </div>
+        </section>
+        <section id="section-sorting">
+            <div class="filter-header">
+                <p class="filter-button" data-action="filter" data-filter="Gryffindor">gryf</p>
+                <p class="filter-button" data-action="filter" data-filter="Hufflepuff">huff</p>
+                <p class="filter-button" data-action="filter" data-filter="Ravenclaw">rav</p>
+                <p class="filter-button" data-action="filter" data-filter="Slytherin">sly</p>
+                <p class="filter-button" data-action="filter" data-filter="*">all</p>
+            </div>
+            <p class="expelled-andies">expelled andies omegalul</p>
+            <div class="sorting-header">
+                <div class="sorting-dropdown-container">
+                    <div class="sorting-dropdown-header">
+                        <p class="sorting-dropdown-input">Sort by...</p>
+                        <img class="sorting-dropdown-icon" src="images/icons/chevron.svg" alt="Chevron">
+                    </div>
+                    <div class="sorting-dropdown-items" style="max-height: 0;">
+                        <p class="sorting-button" data-action="sort" data-sort-direction="asc" data-sort="firstName">First name</p>
+                        <p class="sorting-button" data-action="sort" data-sort-direction="asc" data-sort="lastName">Last name</p>
+                        <p class="sorting-button" data-action="sort" data-sort-direction="asc" data-sort="house">House</p>
+                    </div>
+                </div>
+            <img class="icon" src="images/icons/sorting-hat.svg" alt="Sorting hat">
+            </div>
+            <div class="search-header">
+                <form onsubmit="return false">
+                    <input placeholder="Search...">
+                    <img src="images/icons/magnifying-wand.svg" alt="Magnifying wand" class="icon">
+                </form>
+            </div>
+        </section>
+        <section id="section-students">
+            <div class="student-list"></div>
+        </section>
+    </main>
+    <footer>
+        <div id="footer-top">
+            <h2>Select a House</h2>
+        </div>
+    <div id="footer-crest" class="hogwarts-crest-container">
+            <img class="hogwarts-crest-red" src="images/hogwarts-parts/hogwarts-colours/hogwarts-red.svg">
+            <img class="hogwarts-crest-green" src="images/hogwarts-parts/hogwarts-colours/hogwarts-green.svg">
+            <img class="hogwarts-crest-yellow" src="images/hogwarts-parts/hogwarts-colours/hogwarts-yellow.svg">
+            <img class="hogwarts-crest-blue" src="images/hogwarts-parts/hogwarts-colours/hogwarts-blue.svg">
+
+            <img class="hogwarts-crest-gryffindor" src="images/hogwarts-parts/hogwarts-mascots/hogwarts-gryffindor.svg">
+            <img class="hogwarts-crest-slytherin" src="images/hogwarts-parts/hogwarts-mascots/hogwarts-slytherin.svg">
+            <img class="hogwarts-crest-hufflepuff-body" src="images/hogwarts-parts/hogwarts-mascots/hogwarts-hufflepuff-body.svg">
+            <img class="hogwarts-crest-hufflepuff-head" src="images/hogwarts-parts/hogwarts-mascots/hogwarts-hufflepuff-head.svg">
+            <img class="hogwarts-crest-ravenclaw" src="images/hogwarts-parts/hogwarts-mascots/hogwarts-ravenclaw.svg">
+
+            <img class="hogwarts-crest-frame" src="images/hogwarts-parts/hogwarts-frame.svg">
+            <img class="hogwarts-crest-insignia" src="images/hogwarts-parts/hogwarts-insignia.svg">
+    </div>
+    </footer>
+    <template id="student-template">
+        <div class="student">
+            <div class="student-crest"></div>
+            <div class="student-top">
+                <img class="student-photo" onerror="setDefaultPhoto(this);">
+                <div class="student-top-info">
+                    <p class="student-first-name"></p>
+                    <p class="student-last-name"></p>
+                    <p class="student-house"></p>
+                </div>
+            </div>
+            <div class="student-bottom">
+                <div class="student-bottom-info">
+                    <p class="student-full-name"></p>
+                    <p class="student-blood-status"></p></div>
+                <div class="student-icons">
+                    <img src="images/badges/prefect.svg" alt="Prefect Badge" class="student-prefect">
+                    <img src="images/badges/inquisitor.svg" alt="Inquisitorial Squad Badge" class="student-inquisitor">
+                    <img src="" alt="Quidditch Team Badge" class="student-captain">
+                </div>
+                <div class="student-buttons">
+                    <button class="student-button-prefect">Add Prefect Status</button>
+                    <button class="student-button-inquisitor">Add to Inquisitors</button>
+                    <button class="student-button-expelled">Expel Student</button>
+                </div>
+            </div>
+        </div>
+        <hr>
+    </template>
+    <script src="scripts/script.js"></script>
+    <script src="scripts/reformating.js"></script>
+    <script src="scripts/sorting.js"></script>
+    <script src="scripts/filtering.js"></script>
+    <script src="scripts/hacking.js"></script>
+</body>
+</html>
