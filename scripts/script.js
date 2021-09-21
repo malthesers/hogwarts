@@ -9,6 +9,8 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 let isHacked = false;
+let currentRotationExpand = 0;
+let expulsionAttempts = 0;
 const formerPureBloods = [];
 const HTML = {};
 const lastNameList = [];
@@ -223,10 +225,10 @@ function showStudents(studentList) {
             );
             this.textContent = "- Prefect -";
           } else {
-            console.log("tooManyOfGender");
+            showErrorMessage("gender", student, this);
           }
         } else {
-          console.log("tooManyOfHouse");
+          showErrorMessage("house", student, this);
         }
       } else {
         //Change object, status and button
@@ -268,7 +270,7 @@ function showStudents(studentList) {
           this.textContent = `+ Inquisitor +`;
         }
       } else {
-        console.log("notSlytherinoOrPureman");
+        showErrorMessage("inquisitor", student, this);
       }
     }
 
@@ -276,7 +278,7 @@ function showStudents(studentList) {
     function expelStudent() {
       //Check whether student is my injection
       if (student.id === 0) {
-        console.log("This cannot be done");
+        showErrorMessage("expulsion", student, this);
       } else {
         if (student.expelled === false) {
           //Change object, status and button
@@ -451,10 +453,15 @@ function setDefaultPhoto(photo) {
 }
 
 function expandStudent() {
-  const expansion = this.parentElement.lastElementChild;
+  const expansion = this.nextElementSibling;
   const crest = this.parentElement.firstElementChild;
+  const chevron = this.parentElement.lastElementChild.lastElementChild;
 
-  if (expansion.style.maxHeight === "500px") {
+  //Increment chevron rotation
+  currentRotationExpand += 180;
+  chevron.style.transform = `rotate(${currentRotationExpand}deg)`;
+
+  if (expansion.style.maxHeight === "400px") {
     expansion.style.maxHeight = "0";
     crest.style.backgroundPositionY = "0%";
   } else {
@@ -463,7 +470,7 @@ function expandStudent() {
       expanded.parentElement.firstElementChild.style.backgroundPositionY = "0%";
     });
 
-    expansion.style.maxHeight = "500px";
+    expansion.style.maxHeight = "400px";
     crest.style.backgroundPositionY = "50%";
   }
 }
@@ -492,4 +499,84 @@ function searchStudent() {
 
 function getSearchInput() {
   return document.querySelector(".search-header input").value;
+}
+
+function showErrorMessage(type, student, button) {
+  const container = document.querySelector("#section-messages");
+  const message = document
+    .querySelector("#message-template")
+    .cloneNode(true).content;
+
+  //Add button shake animation and removal eventListener
+  button.classList.add("button-shake");
+  button.addEventListener("animationend", () => {
+    button.classList.remove("button-shake");
+  });
+
+  //Remove message after sliding out
+  message
+    .querySelector(".error-message")
+    .addEventListener("animationend", () => {
+      document.querySelector(".error-message").remove();
+    });
+
+  //Handle prefect error messages
+  if (type === "gender") {
+    message.querySelector(".error-message-text1").textContent =
+      "Student was not made prefect!";
+    message.querySelector(
+      ".error-message-text2"
+    ).textContent = `${student.house} already has a prefect of that gender.`;
+  } else if (type === "house") {
+    message.querySelector(".error-message-text1").textContent =
+      "Student was not made prefect!";
+    message.querySelector(
+      ".error-message-text2"
+    ).textContent = `${student.house} already has both of their prefects`;
+  }
+
+  //Handle inquisitorial squad error messages
+  if (type === "inquisitor") {
+    message.querySelector(".error-message-text1").textContent =
+      "Student was not made an inquisitor!";
+    message.querySelector(
+      ".error-message-text2"
+    ).textContent = `${student.firstName} is neither a Slytherin nor pure of blood.`;
+  } else if (type === "inquisitorHack") {
+    message.querySelector(".error-message-text1").textContent =
+      "Student is no longer an inquisitor!";
+    message.querySelector(
+      ".error-message-text2"
+    ).textContent = `${student.firstName} has been removed as an inquisitor.`;
+  }
+
+  //Handle expulsion error messages
+  if (type === "expulsion") {
+    if (expulsionAttempts === 0) {
+      message.querySelector(".error-message-text1").textContent =
+        "Student could not be expelled!";
+      message.querySelector(
+        ".error-message-text2"
+      ).textContent = `Do not try to expel this student again.`;
+    } else if (expulsionAttempts === 1) {
+      message.querySelector(".error-message-text1").textContent =
+        "Student could not be expelled!";
+      message.querySelector(
+        ".error-message-text2"
+      ).textContent = `I said do NOT try to expel this student again!`;
+    } else if (expulsionAttempts === 2) {
+      message.querySelector(".error-message-text1").textContent =
+        "Student could not be expelled!";
+      message.querySelector(
+        ".error-message-text2"
+      ).textContent = `This is the last warning. Do NOT expel this student!`;
+    } else if (expulsionAttempts === 3) {
+      console.log("skeet");
+    }
+
+    //Incremenet expulsionAttempts
+    expulsionAttempts++;
+  }
+
+  container.appendChild(message);
 }

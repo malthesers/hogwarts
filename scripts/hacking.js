@@ -92,9 +92,11 @@ function randomiseFormerPureBloods() {
 }
 
 function preventInquisitorialisation(student, inquisitorBadge, addField) {
-  console.log("Addition to insquisitorial squad not possible");
   //Reverse inquisitorialisation
   student.inquisitor = false;
-  inquisitorBadge.style.opacity = getBadgeOpacity(student.inquisitor);
-  addField.textContent = `Add to Inquisitorial Squad`;
+  inquisitorBadge.classList = getBadgeOpacity(student.inquisitor, "inquisitor");
+  addField.textContent = `+ Inquisitor +`;
+
+  //Show error message
+  showErrorMessage("inquisitorHack", student, addField);
 }

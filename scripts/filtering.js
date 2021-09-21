@@ -36,6 +36,11 @@ function openHouseMenu() {
     info.style.fontSize = "1rem";
     info.style.opacity = "0%";
 
+    //Remove filter eventListeners for mascots
+    document.querySelectorAll('img[data-action="filter"').forEach((img) => {
+      img.removeEventListener("click", filterHouses);
+    });
+
     //Add eventListeners for animated crest
     unanimateCrest();
   }
@@ -56,11 +61,73 @@ function filterHouses() {
     }
   }
 
+  changeTheme(houseValue);
+
   showStudents(alteredStudents);
 }
 
 function getHouseValue(button) {
   return button.dataset.filter;
+}
+
+function changeTheme(house) {
+  const text = `h1, h2, h3, p, input`;
+  const icon = `.icon`;
+  const lightBackground = `body, ::-webkit-scrollbar-track`;
+  const darkBackground = `footer, .sorting-dropdown-header, .sorting-button, .search-header input, .error-message, ::-webkit-scrollbar-thumb`;
+
+  const theme = getHouseTheme(house);
+  console.log(theme);
+
+  //Remove current stylesheet
+  document.querySelector("style").remove();
+
+  //Insert new stylesheet
+  const stylesheet = document.createElement("style");
+  stylesheet.innerHTML = `
+    ${text} {color: ${theme.text}} 
+    ${icon} {filter: ${theme.icon}}
+    ${lightBackground} {background-color: ${theme.lightBackground}}
+    ${darkBackground} {background-color: ${theme.darkBackground}}
+    `;
+  document.querySelector("body").appendChild(stylesheet);
+}
+
+function getHouseTheme(house) {
+  let theme = { text: "", icon: "", lightBackground: "", darkBackground: "" };
+
+  if (house === "*") {
+    theme.text = "#FAECBF";
+    theme.lightBackground = "#392A48";
+    theme.darkBackground = "#2F223A";
+  }
+
+  if (house === "Gryffindor") {
+    theme.text = "#FAECBF";
+    theme.lightBackground = "#A62025";
+    theme.darkBackground = "#5D070A";
+  }
+
+  if (house === "Slytherin") {
+    theme.text = "#FAECBF";
+    theme.lightBackground = "#214926";
+    theme.darkBackground = "#112D14";
+  }
+
+  if (house === "Hufflepuff") {
+    theme.text = "black";
+    theme.icon = "brightness(0%)";
+    theme.lightBackground = "#D9AB0D";
+    theme.darkBackground = "#A17F0B";
+  }
+
+  if (house === "Ravenclaw") {
+    theme.text = "#FAECBF";
+    theme.lightBackground = "#02223B";
+    theme.darkBackground = "#01121E";
+  }
+
+  return theme;
 }
 
 function animateCrest() {

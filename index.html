@@ -19,6 +19,8 @@
 </head>
 <body>
     <main>
+        <section id="section-messages">
+        </section>
         <section id="section-house">
             <div class="house-text-container">
                 <h1 class="house-text-house">Hogwarts</h1>
@@ -31,25 +33,34 @@
         </section>
         <section id="section-sorting">
             <p class="expelled-andies">expelled andies omegalul</p>
+            <div class="search-header">
+                <form onsubmit="return false">
+                    <input placeholder="Search...">
+                    <img src="images/icons/magnifying-wand.svg" alt="Magnifying wand" class="search-icon icon">
+                </form>
+            </div>
             <div class="sorting-header">
                 <div class="sorting-dropdown-container">
                     <div class="sorting-dropdown-header">
                         <p class="sorting-dropdown-input">Sort by...</p>
-                        <img class="sorting-dropdown-icon" src="images/icons/chevron.svg" alt="Chevron">
+                        <img class="sorting-dropdown-icon icon" src="images/icons/chevron.svg" alt="Chevron">
                     </div>
                     <div class="sorting-dropdown-items" style="max-height: 0;">
-                        <p class="sorting-button" data-action="sort" data-sort-direction="asc" data-sort="firstName">First name</p>
-                        <p class="sorting-button" data-action="sort" data-sort-direction="asc" data-sort="lastName">Last name</p>
-                        <p class="sorting-button" data-action="sort" data-sort-direction="asc" data-sort="house">House</p>
+                        <div class="sorting-button" data-action="sort" data-sort-direction="asc" data-sort="firstName">
+                            <p class="sorting-button-text">First name</p>
+                            <img class="sorting-button-icon icon" src="images/icons/chevron.svg" alt="Chevron">
+                        </div>
+                        <div class="sorting-button" data-action="sort" data-sort-direction="asc" data-sort="lastName">
+                            <p class="sorting-button-text">Last name</p>
+                            <img class="sorting-button-icon icon" src="images/icons/chevron.svg" alt="Chevron">
+                        </div>
+                        <div class="sorting-button" data-action="sort" data-sort-direction="asc" data-sort="house">
+                            <p class="sorting-button-text">House</p>
+                            <img class="sorting-button-icon icon" src="images/icons/chevron.svg" alt="Chevron">
+                        </div>
                     </div>
                 </div>
-            <img class="icon" src="images/icons/sorting-hat.svg" alt="Sorting hat">
-            </div>
-            <div class="search-header">
-                <form onsubmit="return false">
-                    <input placeholder="Search...">
-                    <img src="images/icons/magnifying-wand.svg" alt="Magnifying wand" class="icon">
-                </form>
+            <img class="sorting-icon icon" src="images/icons/sorting-hat.svg" alt="Sorting hat">
             </div>
         </section>
         <section id="section-students">
@@ -60,7 +71,7 @@
         <div id="footer-top">
             <h2>Select a House</h2>
         </div>
-    <div id="footer-crest" class="hogwarts-crest-container">
+        <div id="footer-crest" class="hogwarts-crest-container">
             <img class="hogwarts-crest-red" src="images/hogwarts-parts/hogwarts-colours/hogwarts-red.svg">
             <img class="hogwarts-crest-green" src="images/hogwarts-parts/hogwarts-colours/hogwarts-green.svg">
             <img class="hogwarts-crest-yellow" src="images/hogwarts-parts/hogwarts-colours/hogwarts-yellow.svg">
@@ -74,7 +85,7 @@
 
             <img data-action="filter" data-filter="*" class="hogwarts-crest-insignia" src="images/hogwarts-parts/hogwarts-insignia.svg">
             <img class="hogwarts-crest-frame" src="images/hogwarts-parts/hogwarts-frame.svg">
-    </div>
+         </div>
     </footer>
     <template id="student-template">
         <div class="student">
@@ -101,17 +112,29 @@
                     <button class="student-button-inquisitor">Add to Inquisitors</button>
                     <button class="student-button-expelled">
                         <p class="student-button-expelled-text">Expel Student</p>
-                        <img class="student-button-expelled-img" src="images/icons/howler.svg" alt="Howler">
+                        <img class="student-button-expelled-img icon" src="images/icons/howler.svg" alt="Howler">
                     </button>
                 </div>
             </div>
+            <div class="student-dropdown-container">
+                <img class="student-dropdown-indicator" src="images/icons/chevron.svg" alt="Chevron">
+            </div>    
         </div>
-        <hr>
+    </template>
+    <template id="message-template">
+        <div class="error-message">
+            <div class="error-message-text">
+                <p class="error-message-text1"></p>
+                <p class="error-message-text2"></p>
+            </div>
+            <img class="error-message-img" src="images/icons/messenger-owl.svg" alt="Messenger owl">
+        </div>
     </template>
     <script src="scripts/script.js"></script>
     <script src="scripts/reformating.js"></script>
     <script src="scripts/sorting.js"></script>
     <script src="scripts/filtering.js"></script>
     <script src="scripts/hacking.js"></script>
+    <style></style>
 </body>
 </html>
