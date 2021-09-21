@@ -93,11 +93,12 @@ footer {
   display: grid;
   grid-template-columns: 1fr 2fr;
   grid-gap: 1rem;
+  cursor: pointer;
 }
 
 .student-photo {
   width: 100%;
-  border-radius: 26px;
+  border-radius: 7vw;
 }
 
 .student-top-info {
@@ -120,7 +121,7 @@ footer {
 .student-bottom {
   max-height: 0;
   transition-duration: 0.3s;
-  overflow-y: hidden;
+  overflow: hidden;
 }
 
 .student-bottom > * {
@@ -144,6 +145,11 @@ footer {
   display: inline-block;
   height: 5rem;
   width: auto;
+  opacity: 50%;
+}
+
+.student-badge-active {
+  opacity: 100%;
 }
 
 .student-buttons {
@@ -161,9 +167,51 @@ footer {
   padding: 0.5rem;
 }
 
-.student-buttons button:last-child {
-  background-color: red;
+.student-button-expelled {
+  position: relative;
+  background-color: red !important;
+  border: solid #faecbf 2px !important;
   grid-column: 1/3;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  overflow: visible;
+}
+
+.student-button-expelled-text {
+  margin: 0;
+}
+
+.student-button-expelled-img {
+  position: absolute;
+  width: 5rem;
+  top: 0%;
+  right: 3%;
+  transform: rotate(10deg);
+  transform-origin: right;
+}
+
+.howler-flying {
+  animation-name: howler-flying;
+  animation-duration: 1.5s;
+  animation-fill-mode: both;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes howler-flying {
+  0% {
+  }
+
+  25% {
+    transform: scale(1.3);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: translateX(200%);
+  }
 }
 
 hr {
@@ -201,7 +249,8 @@ hr {
 }
 
 .icon {
-  align-self: center;
+  place-self: center;
+  height: 3rem;
 }
 
 .filter-header {
@@ -225,6 +274,7 @@ hr {
   border: 2px solid #faecbf;
   align-content: center;
   padding: 0.5rem;
+  cursor: pointer;
 }
 
 .sorting-dropdown-input {
@@ -242,6 +292,7 @@ hr {
   max-height: 0;
   overflow-y: hidden;
   transition-duration: 0.3s;
+  cursor: pointer;
 }
 
 .sorting-button {
@@ -257,7 +308,7 @@ hr {
 .search-header form,
 .sorting-header {
   display: grid;
-  grid-template-columns: 7fr 1fr;
+  grid-template-columns: auto 3.2rem;
   grid-gap: 0.5rem;
 }
 

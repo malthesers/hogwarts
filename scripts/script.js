@@ -168,14 +168,17 @@ function showStudents(studentList) {
       showStudentHouseCrest(student);
     clone.querySelector(".student-blood-status").textContent =
       showBloodStatus(student);
-    clone.querySelector(".student-prefect").style.opacity = getBadgeOpacity(
-      student.prefect
+    clone.querySelector(".student-prefect").classList = getBadgeOpacity(
+      student.prefect,
+      "prefect"
     );
-    clone.querySelector(".student-inquisitor").style.opacity = getBadgeOpacity(
-      student.inquisitor
+    clone.querySelector(".student-inquisitor").classList = getBadgeOpacity(
+      student.inquisitor,
+      "inquisitor"
     );
-    clone.querySelector(".student-captain").style.opacity = getBadgeOpacity(
-      student.captain
+    clone.querySelector(".student-captain").classList = getBadgeOpacity(
+      student.captain,
+      "captain"
     );
     clone.querySelector(".student-captain").src = getHouseBadge(student);
     clone
@@ -191,7 +194,7 @@ function showStudents(studentList) {
     clone
       .querySelector(".student-button-expelled")
       .addEventListener("click", expelStudent);
-    clone.querySelector(".student-button-expelled").textContent =
+    clone.querySelector(".student-button-expelled-text").textContent =
       getExpelledStatus(student);
     clone
       .querySelector(".student-top")
@@ -214,8 +217,11 @@ function showStudents(studentList) {
           if (sameHousePrefects.some(isSameGender) === false) {
             //Change object, status and button
             student.prefect = true;
-            prefectBadge.style.opacity = getBadgeOpacity(student.prefect);
-            this.textContent = "Revoke Prefect Status";
+            prefectBadge.classList = getBadgeOpacity(
+              student.prefect,
+              "prefect"
+            );
+            this.textContent = "- Prefect -";
           } else {
             console.log("tooManyOfGender");
           }
@@ -225,8 +231,8 @@ function showStudents(studentList) {
       } else {
         //Change object, status and button
         student.prefect = false;
-        prefectBadge.style.opacity = getBadgeOpacity(student.prefect);
-        this.textContent = `Add Prefect Status`;
+        prefectBadge.classList = getBadgeOpacity(student.prefect, "prefect");
+        this.textContent = `+ Prefect +`;
       }
     }
 
@@ -240,8 +246,11 @@ function showStudents(studentList) {
         if (student.inquisitor === false) {
           //Change object, status and button
           student.inquisitor = true;
-          inquisitorBadge.style.opacity = getBadgeOpacity(student.inquisitor);
-          this.textContent = "Remove from Inquisitorial Squad";
+          inquisitorBadge.classList = getBadgeOpacity(
+            student.inquisitor,
+            "inquisitor"
+          );
+          this.textContent = "- Inquisitor -";
 
           //Call preventInquisitorialisation if hacked
           if (isHacked === true) {
@@ -252,8 +261,11 @@ function showStudents(studentList) {
         } else {
           //Change object, status and button
           student.inquisitor = false;
-          inquisitorBadge.style.opacity = getBadgeOpacity(student.inquisitor);
-          this.textContent = `Add to Inquisitorial Squad`;
+          inquisitorBadge.classList = getBadgeOpacity(
+            student.inquisitor,
+            "inquisitor"
+          );
+          this.textContent = `+ Inquisitor +`;
         }
       } else {
         console.log("notSlytherinoOrPureman");
@@ -280,7 +292,13 @@ function showStudents(studentList) {
         //Remove from allStudents and alteredStudents
         removeFromStudentLists(student);
 
-        showStudents(alteredStudents);
+        const howler = this.lastElementChild;
+
+        //Add Howler animation
+        howler.classList.add("howler-flying");
+        howler.addEventListener("animationend", () => {
+          showStudents(alteredStudents);
+        });
       }
     }
 
@@ -320,9 +338,9 @@ function getPrefectStatus(student) {
   let prefectStatus;
 
   if (student.prefect === false) {
-    prefectStatus = `Add Prefect Status`;
+    prefectStatus = `+ Prefect +`;
   } else if (student.prefect === true) {
-    prefectStatus = `Prevoke Prefect Status`;
+    prefectStatus = `- Prefect -`;
   }
 
   return prefectStatus;
@@ -332,9 +350,9 @@ function getInquisitorStatus(student) {
   let inquisitorStatus;
 
   if (student.inquisitor === false) {
-    inquisitorStatus = `Add to Inquisitorial Squad`;
+    inquisitorStatus = `+ Inquisitor +`;
   } else {
-    inquisitorStatus = `Remove from Inquisitorial Squad`;
+    inquisitorStatus = `- Inquisitor -`;
   }
 
   return inquisitorStatus;
@@ -416,11 +434,11 @@ function showBloodStatus(student) {
   return `Blood status: ${student.blood}`;
 }
 
-function getBadgeOpacity(badge) {
+function getBadgeOpacity(badge, honour) {
   if (badge === false) {
-    return 0.5;
+    return `student-${honour}`;
   } else {
-    return 1;
+    return `student-${honour} student-badge-active`;
   }
 }
 

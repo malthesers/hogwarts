@@ -7,8 +7,15 @@
     <title>Hogwarts</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Merienda:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+    <link rel="manifest" href="favicon/site.webmanifest">
+    <link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#2f223a">
+    <meta name="theme-color" content="#ffffff">
 </head>
 <body>
     <main>
@@ -23,13 +30,6 @@
             </div>
         </section>
         <section id="section-sorting">
-            <div class="filter-header">
-                <p class="filter-button" data-action="filter" data-filter="Gryffindor">gryf</p>
-                <p class="filter-button" data-action="filter" data-filter="Hufflepuff">huff</p>
-                <p class="filter-button" data-action="filter" data-filter="Ravenclaw">rav</p>
-                <p class="filter-button" data-action="filter" data-filter="Slytherin">sly</p>
-                <p class="filter-button" data-action="filter" data-filter="*">all</p>
-            </div>
             <p class="expelled-andies">expelled andies omegalul</p>
             <div class="sorting-header">
                 <div class="sorting-dropdown-container">
@@ -66,14 +66,14 @@
             <img class="hogwarts-crest-yellow" src="images/hogwarts-parts/hogwarts-colours/hogwarts-yellow.svg">
             <img class="hogwarts-crest-blue" src="images/hogwarts-parts/hogwarts-colours/hogwarts-blue.svg">
 
-            <img class="hogwarts-crest-gryffindor" src="images/hogwarts-parts/hogwarts-mascots/hogwarts-gryffindor.svg">
-            <img class="hogwarts-crest-slytherin" src="images/hogwarts-parts/hogwarts-mascots/hogwarts-slytherin.svg">
-            <img class="hogwarts-crest-hufflepuff-body" src="images/hogwarts-parts/hogwarts-mascots/hogwarts-hufflepuff-body.svg">
-            <img class="hogwarts-crest-hufflepuff-head" src="images/hogwarts-parts/hogwarts-mascots/hogwarts-hufflepuff-head.svg">
-            <img class="hogwarts-crest-ravenclaw" src="images/hogwarts-parts/hogwarts-mascots/hogwarts-ravenclaw.svg">
+            <img data-action="filter" data-filter="Gryffindor" class="hogwarts-crest-gryffindor" src="images/hogwarts-parts/hogwarts-mascots/hogwarts-gryffindor.svg">
+            <img data-action="filter" data-filter="Slytherin" class="hogwarts-crest-slytherin" src="images/hogwarts-parts/hogwarts-mascots/hogwarts-slytherin.svg">
+            <img data-action="filter" data-filter="Hufflepuff" class="hogwarts-crest-hufflepuff-body" src="images/hogwarts-parts/hogwarts-mascots/hogwarts-hufflepuff-body.svg">
+            <img data-action="filter" data-filter="Hufflepuff" class="hogwarts-crest-hufflepuff-head" src="images/hogwarts-parts/hogwarts-mascots/hogwarts-hufflepuff-head.svg">
+            <img data-action="filter" data-filter="Ravenclaw" class="hogwarts-crest-ravenclaw" src="images/hogwarts-parts/hogwarts-mascots/hogwarts-ravenclaw.svg">
 
+            <img data-action="filter" data-filter="*" class="hogwarts-crest-insignia" src="images/hogwarts-parts/hogwarts-insignia.svg">
             <img class="hogwarts-crest-frame" src="images/hogwarts-parts/hogwarts-frame.svg">
-            <img class="hogwarts-crest-insignia" src="images/hogwarts-parts/hogwarts-insignia.svg">
     </div>
     </footer>
     <template id="student-template">
@@ -97,9 +97,12 @@
                     <img src="" alt="Quidditch Team Badge" class="student-captain">
                 </div>
                 <div class="student-buttons">
-                    <button class="student-button-prefect">Add Prefect Status</button>
+                    <button class="student-button-prefect">+ Prefect +</button>
                     <button class="student-button-inquisitor">Add to Inquisitors</button>
-                    <button class="student-button-expelled">Expel Student</button>
+                    <button class="student-button-expelled">
+                        <p class="student-button-expelled-text">Expel Student</p>
+                        <img class="student-button-expelled-img" src="images/icons/howler.svg" alt="Howler">
+                    </button>
                 </div>
             </div>
         </div>

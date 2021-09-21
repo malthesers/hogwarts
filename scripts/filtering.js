@@ -19,6 +19,11 @@ function openHouseMenu() {
     info.style.fontSize = "2rem";
     info.style.opacity = "100%";
 
+    //Add filter eventListeners for mascots
+    document.querySelectorAll('img[data-action="filter"').forEach((img) => {
+      img.addEventListener("click", filterHouses);
+    });
+
     //Add eventListeners for animated crest
     animateCrest();
   } else {
