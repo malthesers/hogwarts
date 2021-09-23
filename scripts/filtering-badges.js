@@ -12,7 +12,7 @@ function toggleFilterDropdown() {
   chevron.style.transform = `rotate(${currentRotationFilter}deg)`;
 
   if (filterDropdownIsExpanded === false) {
-    items.style.maxHeight = "300px";
+    items.style.maxHeight = "360px";
   } else {
     items.style.maxHeight = "0px";
   }
