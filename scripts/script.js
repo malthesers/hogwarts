@@ -49,7 +49,7 @@ const Student = {
 };
 
 function loadAnimateCrest() {
-  //Declare interval as constant for easier changability across the function
+  //Declare constant to easily change animation interval
   const interval = 400;
 
   //Animate the houses clockwise - Gryffindor
