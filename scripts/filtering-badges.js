@@ -35,6 +35,7 @@ function filterStudents() {
       return false;
     }
   }
+
   //Only filter by value if a bool
   if (
     filterValue === "captain" ||

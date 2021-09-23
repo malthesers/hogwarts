@@ -7,11 +7,27 @@ function hackingKeywordHandler(event) {
   if (event.keyCode === 13 && input === "imperio") {
     document.querySelector(".search-header input").value = "";
 
-    //!!!
-    ///Insert yellow mist imperio animation
+    //Set current house to Hogwarts
+    houseValue = "*";
 
-    setTimeout(hackTheSystem, 2500);
+    changeTheme(houseValue);
+
+    //Cause hacking functions to commence during imperio animation
+    setTimeout(hackTheSystem, 1500);
+
+    //Open menu upon hacking
+    toggleHouseMenu();
+
+    //Show imperio mist
+    showImperioMist();
   }
+}
+
+function showImperioMist() {
+  const mist = document.querySelector(".imperio-mist");
+
+  mist.classList.add("mist-appearance");
+  mist.addEventListener("animationend", loadAnimateCrest);
 }
 
 function hackTheSystem() {
@@ -25,8 +41,16 @@ function hackTheSystem() {
     //Randomise blood statuses of students
     randomiseBlood();
 
-    //Prevent the addition of students to the inquisitorial squad
-    //preventInquisitorialisation();
+    //Show new student list with self insert
+    alteredStudents = currentStudents.filter(isHouse);
+
+    function isHouse(student) {
+      if ("*" === houseValue || student.house === houseValue) {
+        return true;
+      } else {
+        return false;
+      }
+    }
 
     showStudents(alteredStudents);
   }
@@ -53,6 +77,7 @@ function injectSelf() {
 
   //Inserting self into allStudents array
   allStudents.unshift(student);
+  currentStudents.unshift(student);
 }
 
 function getRandomHouse() {

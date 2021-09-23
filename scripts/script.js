@@ -241,24 +241,30 @@ function showStudents(studentList) {
       "captain"
     );
     clone.querySelector(".student-captain").src = getHouseBadge(student);
-    clone
-      .querySelector(".student-button-prefect")
-      .addEventListener("click", toggleStudentPrefect);
     clone.querySelector(".student-button-prefect").textContent =
       getPrefectStatus(student);
-    clone
-      .querySelector(".student-button-inquisitor")
-      .addEventListener("click", toggleStudentInquisitor);
     clone.querySelector(".student-button-inquisitor").textContent =
       getInquisitorStatus(student);
-    clone
-      .querySelector(".student-button-expelled")
-      .addEventListener("click", expelStudent);
     clone.querySelector(".student-button-expelled-text").textContent =
       getExpelledStatus(student);
     clone
       .querySelector(".student-top")
       .addEventListener("click", expandStudent);
+    if (student.expelled === false) {
+      clone
+        .querySelector(".student-button-prefect")
+        .addEventListener("click", toggleStudentPrefect);
+      clone
+        .querySelector(".student-button-inquisitor")
+        .addEventListener("click", toggleStudentInquisitor);
+      clone
+        .querySelector(".student-button-expelled")
+        .addEventListener("click", expelStudent);
+    } else {
+      clone.querySelector(".student-button-prefect").style.opacity = "30%";
+      clone.querySelector(".student-button-inquisitor").style.opacity = "30%";
+      clone.querySelector(".student-button-expelled").style.opacity = "30%";
+    }
 
     //Toggle whether student is prefect
     function toggleStudentPrefect() {
