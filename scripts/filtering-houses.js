@@ -1,14 +1,14 @@
 "use strict";
 
-let menuIsOpen = false;
+let menuIsOpen = true;
 
-function openHouseMenu() {
+function toggleHouseMenu() {
   //Declare constants
   const footer = document.querySelector("footer");
   const crest = document.querySelector("#footer-crest");
   const info = document.querySelector("#footer-top h2");
 
-  //Expand the footer menu
+  //Open or close
   if (menuIsOpen === false) {
     footer.style.height = "100vh";
     crest.style.top = "50%";
@@ -27,7 +27,7 @@ function openHouseMenu() {
     //Add eventListeners for animated crest
     animateCrest();
   } else {
-    footer.style.height = "10vh";
+    footer.style.height = "5rem";
     crest.style.top = "-40%";
     crest.style.width = "6rem";
     crest.style.transform = "translate(-50%, 0%)";
@@ -49,8 +49,10 @@ function openHouseMenu() {
 }
 
 function filterHouses() {
-  const houseValue = getHouseValue(this);
+  //Get chosen house
+  houseValue = getHouseValue(this);
 
+  //Create new array with filtering by house
   alteredStudents = allStudents.filter(isHouse);
 
   function isHouse(student) {
@@ -61,8 +63,13 @@ function filterHouses() {
     }
   }
 
+  //Reset filter
+  document.querySelector(".filter-dropdown-input").textContent = "All Students";
+
+  //Change theme based on house
   changeTheme(houseValue);
 
+  //Show new student list
   showStudents(alteredStudents);
 }
 
@@ -71,13 +78,15 @@ function getHouseValue(button) {
 }
 
 function changeTheme(house) {
+  //Declare css declarations as a constant for the stylesheet
   const text = `h1, h2, h3, p, input`;
+  const border = `.student-button-expelled, .filter-dropdown-header, .filter-button, .sorting-dropdown-header, .sorting-button, .search-header input, .error-message`;
   const icon = `.icon`;
   const lightBackground = `body, ::-webkit-scrollbar-track`;
-  const darkBackground = `footer, .sorting-dropdown-header, .sorting-button, .search-header input, .error-message, ::-webkit-scrollbar-thumb`;
+  const darkBackground = `footer, .filter-dropdown-header, .filter-button, .sorting-dropdown-header, .sorting-button, .search-header input, .error-message, ::-webkit-scrollbar-thumb`;
 
+  //Get new theme based on house
   const theme = getHouseTheme(house);
-  console.log(theme);
 
   //Remove current stylesheet
   document.querySelector("style").remove();
@@ -86,9 +95,15 @@ function changeTheme(house) {
   const stylesheet = document.createElement("style");
   stylesheet.innerHTML = `
     ${text} {color: ${theme.text}} 
+    ${border} {border-color: ${theme.text}} 
     ${icon} {filter: ${theme.icon}}
     ${lightBackground} {background-color: ${theme.lightBackground}}
     ${darkBackground} {background-color: ${theme.darkBackground}}
+    @media (min-width:650px) {
+      .sorting-button {
+        background-color: transparent;
+      }
+    }
     `;
   document.querySelector("body").appendChild(stylesheet);
 }
@@ -100,18 +115,21 @@ function getHouseTheme(house) {
     theme.text = "#FAECBF";
     theme.lightBackground = "#392A48";
     theme.darkBackground = "#2F223A";
+    showHogwartsDisplay();
   }
 
   if (house === "Gryffindor") {
     theme.text = "#FAECBF";
     theme.lightBackground = "#A62025";
     theme.darkBackground = "#5D070A";
+    showGryffindorDisplay();
   }
 
   if (house === "Slytherin") {
     theme.text = "#FAECBF";
     theme.lightBackground = "#214926";
     theme.darkBackground = "#112D14";
+    showSlytherinDisplay();
   }
 
   if (house === "Hufflepuff") {
@@ -119,15 +137,59 @@ function getHouseTheme(house) {
     theme.icon = "brightness(0%)";
     theme.lightBackground = "#D9AB0D";
     theme.darkBackground = "#A17F0B";
+    showHufflepuffDisplay();
   }
 
   if (house === "Ravenclaw") {
     theme.text = "#FAECBF";
     theme.lightBackground = "#02223B";
     theme.darkBackground = "#01121E";
+    showRavenclawDisplay();
   }
 
   return theme;
+}
+
+function showHogwartsDisplay() {
+  document.querySelector(".house-text-house").textContent = "Hogwarts";
+  document.querySelector(".house-text-desc").textContent =
+    "Draco Dormiens Nunquam Titillandus";
+  document.querySelector(".house-img").src = "images/crests/hogwarts-crest.svg";
+}
+
+function showGryffindorDisplay() {
+  document.querySelector(".house-text-house").textContent = "Gryffindor";
+  document.querySelector(
+    ".house-text-desc"
+  ).innerHTML = `"Their daring, nerve and chivalry set Gryffindors apart."`;
+  document.querySelector(".house-img").src =
+    "images/crests/gryffindor-crest.svg";
+}
+
+function showSlytherinDisplay() {
+  document.querySelector(".house-text-house").textContent = "Slytherin";
+  document.querySelector(
+    ".house-text-desc"
+  ).innerHTML = `"Those cunning folk use any means to achieve their ends."`;
+  document.querySelector(".house-img").src =
+    "images/crests/slytherin-crest.svg";
+}
+
+function showHufflepuffDisplay() {
+  document.querySelector(".house-text-house").textContent = "Hufflepuff";
+  document.querySelector(
+    ".house-text-desc"
+  ).innerHTML = `"Those patient Hufflepuffs are true<br>And unafraid of toil."`;
+  document.querySelector(".house-img").src =
+    "images/crests/hufflepuff-crest.svg";
+}
+function showRavenclawDisplay() {
+  document.querySelector(".house-text-house").textContent = "Ravenclaw";
+  document.querySelector(
+    ".house-text-desc"
+  ).innerHTML = `"Where those of wit and learning,<br>Will always find their kind."`;
+  document.querySelector(".house-img").src =
+    "images/crests/ravenclaw-crest.svg";
 }
 
 function animateCrest() {

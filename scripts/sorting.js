@@ -1,6 +1,6 @@
 "use strict";
 
-let dropdownIsExpanded = false;
+let sortingDropdownIsExpanded = false;
 let currentRotationSort = 0;
 let currentRotationFirstname = 180;
 let currentRotationLastname = 180;
@@ -70,7 +70,7 @@ function changeSortDir(button) {
   }
 }
 
-function openSortingDropdown() {
+function toggleSortingDropdown() {
   const items = document.querySelector(".sorting-dropdown-items");
   const chevron = document.querySelector(".sorting-dropdown-icon");
 
@@ -78,11 +78,11 @@ function openSortingDropdown() {
   currentRotationSort += 180;
   chevron.style.transform = `rotate(${currentRotationSort}deg)`;
 
-  if (dropdownIsExpanded === false) {
+  if (sortingDropdownIsExpanded === false) {
     items.style.maxHeight = "150px";
   } else {
     items.style.maxHeight = "0px";
   }
 
-  dropdownIsExpanded = !dropdownIsExpanded;
+  sortingDropdownIsExpanded = !sortingDropdownIsExpanded;
 }

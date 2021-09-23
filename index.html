@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hogwarts</title>
+    <title>Hogwarts Student List</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,26 +18,62 @@
     <meta name="theme-color" content="#ffffff">
 </head>
 <body>
+    <section id="section-messages">
+    </section>
     <main>
-        <section id="section-messages">
-        </section>
+        <div id="left-panel">
         <section id="section-house">
             <div class="house-text-container">
-                <h1 class="house-text-house">Hogwarts</h1>
-                <h2 class="house-text-class">Class of 1991</h2>
-                <h2 class="house-text-students">Students:</h2>
+                <div class="house-text-top">
+                    <h1 class="house-text-house">Hogwarts</h1>
+                    <h2 class="house-text-class">Class of 1991</h2>
+                    <h2 class="house-text-students">Students:</h2>
+                </div>
+                <div class="house-text-bottom">
+                    <p class="house-text-desc">Draco Dormiens Nunquam Titillandus</p>
+                </div>
             </div>
             <div class="house-img-container">
                 <img class="house-img" src="images/crests/hogwarts-crest.svg" alt="Hogwarts Crest">
             </div>
         </section>
+    </div>
+    <div id="right-panel">
         <section id="section-sorting">
-            <p class="expelled-andies">expelled andies omegalul</p>
             <div class="search-header">
                 <form onsubmit="return false">
                     <input placeholder="Search...">
                     <img src="images/icons/magnifying-wand.svg" alt="Magnifying wand" class="search-icon icon">
                 </form>
+            </div>
+            <div class="filter-header">
+                <div class="filter-dropdown-container">
+                    <div class="filter-dropdown-header">
+                        <p class="filter-dropdown-input">All Students</p>
+                        <img class="filter-dropdown-icon icon" src="images/icons/chevron.svg" alt="Chevron">
+                    </div>
+                    <div class="filter-dropdown-items" style="max-height: 0;">
+                        <div class="filter-button" data-action="filter" data-sort-direction="asc" data-filter="*">
+                            <p class="filter-button-text">All Students</p>
+                        </div>
+                        <div class="filter-button" data-action="filter" data-sort-direction="asc" data-filter="current">
+                            <p class="filter-button-text">Current Students</p>
+                        </div>
+                        <div class="filter-button" data-action="filter" data-sort-direction="asc" data-filter="expelled">
+                            <p class="filter-button-text">Expelled Students</p>
+                        </div>
+                        <div class="filter-button" data-action="filter" data-sort-direction="asc" data-filter="captain">
+                            <p class="filter-button-text">Captain</p>
+                        </div>
+                        <div class="filter-button" data-action="filter" data-sort-direction="asc" data-filter="prefect">
+                            <p class="filter-button-text">Prefect</p>
+                        </div>
+                        <div class="filter-button" data-action="filter" data-sort-direction="asc" data-filter="inquisitor">
+                            <p class="filter-button-text">Inquisitor</p>
+                        </div>
+                    </div>
+                </div>
+            <img class="filter-icon icon" src="images/icons/badge.svg" alt="Badge">
             </div>
             <div class="sorting-header">
                 <div class="sorting-dropdown-container">
@@ -66,6 +102,7 @@
         <section id="section-students">
             <div class="student-list"></div>
         </section>
+    </div>
     </main>
     <footer>
         <div id="footer-top">
@@ -103,22 +140,20 @@
                     <p class="student-full-name"></p>
                     <p class="student-blood-status"></p></div>
                 <div class="student-icons">
+                    <img src="" alt="Quidditch Team Badge" class="student-captain">
                     <img src="images/badges/prefect.svg" alt="Prefect Badge" class="student-prefect">
                     <img src="images/badges/inquisitor.svg" alt="Inquisitorial Squad Badge" class="student-inquisitor">
-                    <img src="" alt="Quidditch Team Badge" class="student-captain">
+                    <img src="images/badges/expelled.svg" alt="Expelled Badge" class="student-expelled">
                 </div>
                 <div class="student-buttons">
                     <button class="student-button-prefect">+ Prefect +</button>
                     <button class="student-button-inquisitor">Add to Inquisitors</button>
                     <button class="student-button-expelled">
                         <p class="student-button-expelled-text">Expel Student</p>
-                        <img class="student-button-expelled-img icon" src="images/icons/howler.svg" alt="Howler">
+                        <img class="student-button-expelled-img" src="images/icons/howler.svg" alt="Howler">
                     </button>
                 </div>
             </div>
-            <div class="student-dropdown-container">
-                <img class="student-dropdown-indicator" src="images/icons/chevron.svg" alt="Chevron">
-            </div>    
         </div>
     </template>
     <template id="message-template">
@@ -133,7 +168,8 @@
     <script src="scripts/script.js"></script>
     <script src="scripts/reformating.js"></script>
     <script src="scripts/sorting.js"></script>
-    <script src="scripts/filtering.js"></script>
+    <script src="scripts/filtering-houses.js"></script>
+    <script src="scripts/filtering-badges.js"></script>
     <script src="scripts/hacking.js"></script>
     <style></style>
 </body>

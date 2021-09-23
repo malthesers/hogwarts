@@ -3,6 +3,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   console.log("DOMContentLoaded");
 
+  loadAnimateCrest();
   loadHTML();
   loadButtons();
   loadFamiliesJSON();
@@ -11,13 +12,26 @@ document.addEventListener("DOMContentLoaded", () => {
 let isHacked = false;
 let currentRotationExpand = 0;
 let expulsionAttempts = 0;
-const formerPureBloods = [];
+
+let houseValue = "*";
+
 const HTML = {};
+const formerPureBloods = [];
 const lastNameList = [];
 let familyNameList = [];
-const expelledStudents = [];
+
+//All students, expelled or not
 const allStudents = [];
+
+//Non-expelled students
+const currentStudents = [];
+
+//Expelled students
+const expelledStudents = [];
+
+//The constantly sorted, filtered and search array being displayed
 let alteredStudents = [];
+
 const Student = {
   firstName: "",
   middleName: "",
@@ -27,12 +41,47 @@ const Student = {
   house: "",
   photo: "",
   blood: "",
-  prefect: "",
-  inquisitor: "",
-  captain: "",
-  expelled: "",
+  prefect: false,
+  inquisitor: false,
+  captain: false,
+  expelled: false,
   id: 1,
 };
+
+function loadAnimateCrest() {
+  //Declare interval as constant for easier changability across the function
+  const interval = 50;
+
+  //Animate the houses clockwise - Gryffindor
+  setTimeout(() => {
+    animateGryffindor();
+  }, interval * 1);
+  //Animate the houses clockwise - Slytherin
+  setTimeout(() => {
+    unanimateGryffindor();
+    animateSlytherin();
+  }, interval * 2);
+  //Animate the houses clockwise - Ravenclaw
+  setTimeout(() => {
+    unanimateSlytherin();
+    animateRavenclaw();
+  }, interval * 3);
+  //Animate the houses clockwise - Hufflepuff
+  setTimeout(() => {
+    unanimateRavenclaw();
+    animateHufflepuff();
+  }, interval * 4);
+  //Animate the houses clockwise - Insignia
+  setTimeout(() => {
+    unanimateHufflepuff();
+    animateInsignia();
+  }, interval * 5);
+  //Show the Hogwarts display of all students
+  setTimeout(() => {
+    unanimateInsignia();
+    toggleHouseMenu();
+  }, interval * 6);
+}
 
 function loadHTML() {
   HTML.container = document.querySelector(".student-list");
@@ -40,6 +89,32 @@ function loadHTML() {
 }
 
 function loadButtons() {
+  //Add searching eventListener
+  document
+    .querySelector(".search-header input")
+    .addEventListener("input", searchStudent);
+
+  //Add house fillter eventListeners and animations
+  document.querySelectorAll('img[data-action="filter"').forEach((img) => {
+    img.addEventListener("click", filterHouses);
+  });
+  animateCrest();
+
+  //Add menu eventListener
+  document
+    .querySelector("#footer-crest")
+    .addEventListener("click", toggleHouseMenu);
+
+  //Add badge filter eventListeners
+  document.querySelectorAll(".filter-button").forEach((button) => {
+    button.addEventListener("click", filterStudents);
+  });
+
+  //Add badge filter dropdown eventListener
+  document
+    .querySelector(".filter-dropdown-header")
+    .addEventListener("click", toggleFilterDropdown);
+
   //Add sorting button eventListeners
   document.querySelectorAll(".sorting-button").forEach((button) => {
     button.addEventListener("click", sortStudents);
@@ -48,33 +123,12 @@ function loadButtons() {
   //Add sorting dropdown eventListener
   document
     .querySelector(".sorting-dropdown-header")
-    .addEventListener("click", openSortingDropdown);
-
-  //Add filter button eventListeners
-  document.querySelectorAll(".filter-button").forEach((button) => {
-    button.addEventListener("click", filterHouses);
-  });
-
-  //Add searching eventListener
-  document
-    .querySelector(".search-header input")
-    .addEventListener("input", searchStudent);
-
-  document
-    .querySelector("#footer-crest")
-    .addEventListener("click", openHouseMenu);
+    .addEventListener("click", toggleSortingDropdown);
 
   //Add eventListener for commencing hacking
   document
     .querySelector("input")
     .addEventListener("keydown", hackingKeywordHandler);
-
-  //Add button for showing exeplled students
-  document.querySelector(".expelled-andies").addEventListener("click", () => {
-    alteredStudents = expelledStudents;
-
-    showStudents(alteredStudents);
-  });
 }
 
 function loadFamiliesJSON() {
@@ -128,13 +182,14 @@ function reformatJSON(studentData) {
     student.inquisitor = false;
     student.expelled = false;
 
-    //Add to array of students
+    //Add to array of all and current students
     allStudents.push(student);
+    currentStudents.push(student);
 
     studentID++;
   });
 
-  alteredStudents = allStudents;
+  alteredStudents = currentStudents;
 
   //Create list of current pure-blood
   getPureBloods(allStudents);
@@ -149,15 +204,14 @@ function showStudents(studentList) {
     randomiseFormerPureBloods();
   }
 
-  document.querySelector(
-    ".house-text-students"
-  ).textContent = `Students: ${allStudents.length}`;
+  //Show student count
+  showStudentCount(alteredStudents);
 
   //Empty student-list
   HTML.container.innerHTML = "";
 
   //Display student-list
-  studentList.forEach((student) => {
+  studentList.forEach((student, index) => {
     const clone = HTML.student.cloneNode(true).content;
 
     clone.querySelector(".student-photo").src = student.photo;
@@ -177,6 +231,10 @@ function showStudents(studentList) {
     clone.querySelector(".student-inquisitor").classList = getBadgeOpacity(
       student.inquisitor,
       "inquisitor"
+    );
+    clone.querySelector(".student-expelled").classList = getBadgeOpacity(
+      student.expelled,
+      "expelled"
     );
     clone.querySelector(".student-captain").classList = getBadgeOpacity(
       student.captain,
@@ -291,9 +349,10 @@ function showStudents(studentList) {
         //Add student to expelledStudents
         expelledStudents.push(student);
 
-        //Remove from allStudents and alteredStudents
-        removeFromStudentLists(student);
+        //Remove from currentStudents and alteredStudents
+        removeFromStudentLists(student, index);
 
+        //Declare howler
         const howler = this.lastElementChild;
 
         //Add Howler animation
@@ -309,6 +368,12 @@ function showStudents(studentList) {
   });
 }
 
+function showStudentCount(studentList) {
+  document.querySelector(
+    ".house-text-students"
+  ).textContent = `Students: ${studentList.length}`;
+}
+
 function getPureBloods(studentList) {
   studentList.forEach((student) => {
     if (student.blood === "Pure-blood") {
@@ -317,14 +382,14 @@ function getPureBloods(studentList) {
   });
 }
 
-function removeFromStudentLists(studentObject) {
+function removeFromStudentLists(studentObject, index) {
   //Declare expelled student's ID
   const studentID = studentObject.id;
 
-  allStudents.forEach((student, index) => {
+  currentStudents.forEach((student, index) => {
     //Find matching studentID in allStudents
     if (studentID === student.id) {
-      allStudents.splice(index, 1);
+      currentStudents.splice(index, 1);
     }
   });
 
@@ -455,11 +520,6 @@ function setDefaultPhoto(photo) {
 function expandStudent() {
   const expansion = this.nextElementSibling;
   const crest = this.parentElement.firstElementChild;
-  const chevron = this.parentElement.lastElementChild.lastElementChild;
-
-  //Increment chevron rotation
-  currentRotationExpand += 180;
-  chevron.style.transform = `rotate(${currentRotationExpand}deg)`;
 
   if (expansion.style.maxHeight === "400px") {
     expansion.style.maxHeight = "0";
