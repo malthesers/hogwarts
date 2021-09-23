@@ -50,7 +50,7 @@ const Student = {
 
 function loadAnimateCrest() {
   //Declare interval as constant for easier changability across the function
-  const interval = 50;
+  const interval = 400;
 
   //Animate the houses clockwise - Gryffindor
   setTimeout(() => {
