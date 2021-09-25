@@ -30,15 +30,43 @@
                 <div class="house-text-top">
                     <h1 class="house-text-house">Hogwarts</h1>
                     <h2 class="house-text-class">Class of 1991</h2>
-                    <h2 class="house-text-students">Students:</h2>
                 </div>
                 <div class="house-text-bottom">
-                    <p class="house-text-desc">Draco Dormiens Nunquam Titillandus</p>
+                    <h2 class="house-text-students-header">Students</h2>
+                    <div class="house-text-students-top">
+                        <div class="house-text-students">
+                            <h3 class="house-text-current"></h3>
+                            <img class="house-text-current-image" src="images/crests/hogwarts-crest.svg">
+                        </div>
+                        <div class="house-text-students">
+                            <h3 class="house-text-expelled"></h3>
+                            <img class="house-text-expelled-image" src="images/badges/expelled.svg">
+                        </div>
+                    </div>
+                    <div class="house-text-students-bottom">
+                        <div class="house-text-students">
+                            <h3 class="house-text-gryffindor"></h3>
+                            <img class="house-text-gryffindor-image" src="images/crests/gryffindor-crest.svg">
+                        </div>
+                        <div class="house-text-students">
+                            <h3 class="house-text-slytherin"></h3>
+                            <img class="house-text-slytherin-image" src="images/crests/slytherin-crest.svg">
+                        </div>
+                        <div class="house-text-students">
+                            <h3 class="house-text-hufflepuff"></h3>
+                            <img class="house-text-hufflepuff-image" src="images/crests/hufflepuff-crest.svg">
+                        </div>
+                        <div class="house-text-students">
+                            <h3 class="house-text-ravenclaw"></h3>
+                            <img class="house-text-ravenclaw-image" src="images/crests/ravenclaw-crest.svg">
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="house-img-container">
                 <img class="house-img" src="images/crests/hogwarts-crest.svg" alt="Hogwarts Crest">
             </div>
+            <h3 class="house-text-displayed">Currently Displayed: </h3> 
         </section>
     </div>
     <div id="right-panel">
@@ -149,8 +177,14 @@
                     <img src="images/badges/expelled.svg" alt="Expelled Badge" class="student-expelled">
                 </div>
                 <div class="student-buttons">
-                    <button class="student-button-prefect">+ Prefect +</button>
-                    <button class="student-button-inquisitor">Add to Inquisitors</button>
+                    <button class="student-button-prefect">
+                        <p class="student-button-prefect-text">Prefect</p>
+                        <p class="student-button-prefect-icon">+</p>
+                    </button>
+                    <button class="student-button-inquisitor">
+                        <p class="student-button-inquisitor-text">Inquisitor</p>
+                        <p class="student-button-inquisitor-icon">+</p>
+                    </button>
                     <button class="student-button-expelled">
                         <p class="student-button-expelled-text">Expel Student</p>
                         <img class="student-button-expelled-img" src="images/icons/howler.svg" alt="Howler">

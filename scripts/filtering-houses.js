@@ -152,42 +152,28 @@ function getHouseTheme(house) {
 
 function showHogwartsDisplay() {
   document.querySelector(".house-text-house").textContent = "Hogwarts";
-  document.querySelector(".house-text-desc").textContent =
-    "Draco Dormiens Nunquam Titillandus";
   document.querySelector(".house-img").src = "images/crests/hogwarts-crest.svg";
 }
 
 function showGryffindorDisplay() {
   document.querySelector(".house-text-house").textContent = "Gryffindor";
-  document.querySelector(
-    ".house-text-desc"
-  ).innerHTML = `"Their daring, nerve and chivalry set Gryffindors apart."`;
   document.querySelector(".house-img").src =
     "images/crests/gryffindor-crest.svg";
 }
 
 function showSlytherinDisplay() {
   document.querySelector(".house-text-house").textContent = "Slytherin";
-  document.querySelector(
-    ".house-text-desc"
-  ).innerHTML = `"Those cunning folk use any means to achieve their ends."`;
   document.querySelector(".house-img").src =
     "images/crests/slytherin-crest.svg";
 }
 
 function showHufflepuffDisplay() {
   document.querySelector(".house-text-house").textContent = "Hufflepuff";
-  document.querySelector(
-    ".house-text-desc"
-  ).innerHTML = `"Those patient Hufflepuffs are true<br>And unafraid of toil."`;
   document.querySelector(".house-img").src =
     "images/crests/hufflepuff-crest.svg";
 }
 function showRavenclawDisplay() {
   document.querySelector(".house-text-house").textContent = "Ravenclaw";
-  document.querySelector(
-    ".house-text-desc"
-  ).innerHTML = `"Where those of wit and learning,<br>Will always find their kind."`;
   document.querySelector(".house-img").src =
     "images/crests/ravenclaw-crest.svg";
 }

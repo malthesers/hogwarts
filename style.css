@@ -187,6 +187,22 @@ footer {
   border: solid #2f223a 2px;
   width: 100%;
   padding: 0.5rem;
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+}
+
+.student-button-prefect,
+.student-button-inquisitor {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.student-button-prefect p,
+.student-button-inquisitor p {
+  display: inline-block;
+  color: #2f223a;
+  margin: 0;
 }
 
 .student-button-expelled {
@@ -356,8 +372,51 @@ footer {
   margin: 0;
 }
 
-.house-text-container p {
-  margin-top: 0.5rem;
+.house-text-container h3 {
+  font-size: 1.3rem;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.house-text-students-header {
+  margin-bottom: 0.5rem !important;
+}
+
+.house-text-students-top,
+.house-text-students-bottom {
+  text-align: center;
+}
+
+.house-text-students {
+  display: inline-block;
+  position: relative;
+  height: 2rem;
+  width: 2rem;
+}
+
+.house-text-students h3 {
+  position: absolute;
+  font-size: 1.5rem;
+  left: 50%;
+  top: 45%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+.house-text-students img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  height: 100%;
+  width: auto;
+  opacity: 50%;
+}
+
+.house-text-displayed {
+  font-size: 1.5rem;
+  grid-column: 1/3;
+  text-align: center;
   margin-bottom: 0;
 }
 
@@ -748,6 +807,13 @@ footer {
 
   #section-students {
     grid-column: 2/3;
+  }
+
+  .house-text-displayed {
+    grid-column: 1/2;
+    grid-row: 2/3;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
   }
 }
 

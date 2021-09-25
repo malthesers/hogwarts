@@ -125,3 +125,16 @@ function preventInquisitorialisation(student, inquisitorBadge, addField) {
   //Show error message
   showErrorMessage("inquisitorHack", student, addField);
 }
+
+function curseHogwarts() {
+  //Add cursing eventListener to everything
+  document.querySelector("*").addEventListener("click", () => {
+    event.target.style.backgroundColor = "black";
+    event.target.style.color = "white";
+    event.target.style.opacity = "70%";
+    event.target.style.transform = "rotate(180deg)";
+
+    //Display cursed text
+    event.target.textContent = "ḭ̷̺̖͎̬̇̋̑͌́͂͋̌͋̎̓̊̊̽͜͠ ̴̧͍̼̪̋͂̊̑͊̏̓̈́̃̊͂̚̚͝͠w̶̬̪̾̆͘ä̵̠͎̗́̊̓̕ŗ̴̡̡̗̭̝̲̤͍̤͕̋ń̴̫͉͖̯̣͔͈̻͚̠̯͂̐̅́̎́̒̽͊̾̓̓͝e̴̡̢̫̫̗̗͎͎̠̥̥̫͕̱̹͐̈́̂̅͌ḑ̸͇̤͓̫̬̼̻̫͎͙͕͈̒̊͊̿̽̂̐́́̃̀̐́͝ͅ ̷͖̝̦̇͒̎̈́̃͐͛́͊̓̕͜͜͝y̴̧̡͓͍̾͗̀̂͜o̶̤͕̩̟̹͛̓̎̄̓͊̎̈͘̚͜͜͝͠ů̴̗̦̭̐̒̕";
+  });
+}

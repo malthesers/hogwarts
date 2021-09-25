@@ -50,7 +50,7 @@ const Student = {
 
 function loadAnimateCrest() {
   //Declare constant to easily change animation interval
-  const interval = 400;
+  const interval = 10;
 
   //Animate the houses clockwise - Gryffindor
   setTimeout(() => {
@@ -241,9 +241,9 @@ function showStudents(studentList) {
       "captain"
     );
     clone.querySelector(".student-captain").src = getHouseBadge(student);
-    clone.querySelector(".student-button-prefect").textContent =
+    clone.querySelector(".student-button-prefect-icon").textContent =
       getPrefectStatus(student);
-    clone.querySelector(".student-button-inquisitor").textContent =
+    clone.querySelector(".student-button-inquisitor-icon").textContent =
       getInquisitorStatus(student);
     clone.querySelector(".student-button-expelled-text").textContent =
       getExpelledStatus(student);
@@ -287,7 +287,7 @@ function showStudents(studentList) {
               student.prefect,
               "prefect"
             );
-            this.textContent = "- Prefect -";
+            this.lastElementChild.textContent = "-";
           } else {
             showErrorMessage("gender", student, this);
           }
@@ -298,7 +298,7 @@ function showStudents(studentList) {
         //Change object, status and button
         student.prefect = false;
         prefectBadge.classList = getBadgeOpacity(student.prefect, "prefect");
-        this.textContent = `+ Prefect +`;
+        this.lastElementChild.textContent = `+`;
       }
     }
 
@@ -316,7 +316,7 @@ function showStudents(studentList) {
             student.inquisitor,
             "inquisitor"
           );
-          this.textContent = "- Inquisitor -";
+          this.lastElementChild.textContent = "-";
 
           //Call preventInquisitorialisation if hacked
           if (isHacked === true) {
@@ -331,7 +331,7 @@ function showStudents(studentList) {
             student.inquisitor,
             "inquisitor"
           );
-          this.textContent = `+ Inquisitor +`;
+          this.lastElementChild.textContent = `+`;
         }
       } else {
         showErrorMessage("inquisitor", student, this);
@@ -375,9 +375,53 @@ function showStudents(studentList) {
 }
 
 function showStudentCount(studentList) {
-  document.querySelector(
-    ".house-text-students"
-  ).textContent = `Students: ${studentList.length}`;
+  //Show current student count
+  document.querySelector(".house-text-current").textContent =
+    getCurrentStudentCount();
+
+  //Show expelled student count
+  document.querySelector(".house-text-expelled").textContent =
+    getExpelledStudentCount();
+
+  //Show house student counts
+  showHouseStudentCount();
+
+  //Show displayed student count
+  document.querySelector(".house-text-displayed").textContent =
+    getDisplayedStudentCount(studentList);
+}
+
+function getCurrentStudentCount() {
+  return currentStudents.length;
+}
+
+function getExpelledStudentCount() {
+  return expelledStudents.length;
+}
+
+function showHouseStudentCount() {
+  //Declare constant of houses to iterate through
+  const houses = ["Gryffindor", "Slytherin", "Hufflepuff", "Ravenclaw"];
+
+  //Iterate through each house
+  houses.forEach((house) => {
+    //Get array of students from given house
+    const houseStudents = currentStudents.filter(isHouse);
+
+    function isHouse(student) {
+      if (student.house === house) {
+        return true;
+      }
+    }
+
+    //Insert array length into given house's counter
+    document.querySelector(`.house-text-${house.toLowerCase()}`).textContent =
+      houseStudents.length;
+  });
+}
+
+function getDisplayedStudentCount(studentList) {
+  return `Currently Displayed: ${studentList.length}`;
 }
 
 function getPureBloods(studentList) {
@@ -411,9 +455,9 @@ function getPrefectStatus(student) {
   let prefectStatus;
 
   if (student.prefect === false) {
-    prefectStatus = `+ Prefect +`;
+    prefectStatus = `+`;
   } else if (student.prefect === true) {
-    prefectStatus = `- Prefect -`;
+    prefectStatus = `-`;
   }
 
   return prefectStatus;
@@ -423,9 +467,9 @@ function getInquisitorStatus(student) {
   let inquisitorStatus;
 
   if (student.inquisitor === false) {
-    inquisitorStatus = `+ Inquisitor +`;
+    inquisitorStatus = `+`;
   } else {
-    inquisitorStatus = `- Inquisitor -`;
+    inquisitorStatus = `-`;
   }
 
   return inquisitorStatus;
@@ -547,13 +591,19 @@ function searchStudent() {
   const searchedStudents = alteredStudents.filter(containsSearchInput);
 
   function containsSearchInput(student) {
-    const studentFullName =
+    //Allow first name and last name to search a student with middle name
+    const studentNamesLong =
       `${student.firstName} ${student.middleName} ${student.nickName} ${student.lastName}`.replaceAll(
         " undefined",
         ""
       );
+    const studentNamesShort =
+      `${student.firstName} ${student.lastName}`.replaceAll(" undefined", "");
 
-    if (studentFullName.toLowerCase().includes(searchInput.toLowerCase())) {
+    if (
+      studentNamesLong.toLowerCase().includes(searchInput.toLowerCase()) ||
+      studentNamesShort.toLowerCase().includes(searchInput.toLowerCase())
+    ) {
       return true;
     } else {
       return false;
@@ -637,7 +687,9 @@ function showErrorMessage(type, student, button) {
         ".error-message-text2"
       ).textContent = `This is the last warning. Do NOT expel this student!`;
     } else if (expulsionAttempts === 3) {
-      console.log("skeet");
+      message.querySelector(".error-message-text1").textContent =
+        "ḭ̷̺̖͎̬̇̋̑͌́͂͋̌͋̎̓̊̊̽͜͠ ̴̧͍̼̪̋͂̊̑͊̏̓̈́̃̊͂̚̚͝͠w̶̬̪̾̆͘ä̵̠͎̗́̊̓̕ŗ̴̡̡̗̭̝̲̤͍̤͕̋ń̴̫͉͖̯̣͔͈̻͚̠̯͂̐̅́̎́̒̽͊̾̓̓͝e̴̡̢̫̫̗̗͎͎̠̥̥̫͕̱̹͐̈́̂̅͌ḑ̸͇̤͓̫̬̼̻̫͎͙͕͈̒̊͊̿̽̂̐́́̃̀̐́͝ͅ ̷͖̝̦̇͒̎̈́̃͐͛́͊̓̕͜͜͝y̴̧̡͓͍̾͗̀̂͜o̶̤͕̩̟̹͛̓̎̄̓͊̎̈͘̚͜͜͝͠ů̴̗̦̭̐̒̕";
+      setTimeout(curseHogwarts, 1500);
     }
 
     //Incremenet expulsionAttempts
