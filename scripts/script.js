@@ -152,14 +152,22 @@ function loadStudentsJSON() {
 function getLastNameList(studentData) {
   studentData.forEach((student) => {
     let lastName = student.fullname.trim().toLowerCase();
-    lastName = lastName.substring(lastName.lastIndexOf(" ") + 1);
+    lastName = handleLastName(lastName);
 
     if (lastName.includes("-")) {
-      lastName = lastName.substring(lastName.lastIndexOf("-") + 1);
+      lastName = handleHyphenedLastName(lastName);
     }
 
     lastNameList.push(lastName);
   });
+}
+
+function handleLastName(lastName) {
+  return lastName.substring(lastName.lastIndexOf(" ") + 1);
+}
+
+function handleHyphenedLastName(lastName) {
+  return lastName.substring(lastName.lastIndexOf("-") + 1);
 }
 
 function reformatJSON(studentData) {
