@@ -1,1 +1,1 @@
-https://malt9830.github.io/hogwarts/
+https://malthesers.github.io/hogwarts/
