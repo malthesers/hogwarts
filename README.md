@@ -10,7 +10,7 @@ It wasn't noticed until after the assignment had been turned in, and won't be ch
 
 ## Instructions
 
-### House Navigation
+### 🏠 House Navigation
 
 Due to poor UX, it may not have been noticeable, but the loading animation crest serves as a way to navigate from house to house.
 
@@ -18,14 +18,14 @@ Click it at the bottom of the screen to open the menu and hit any house to visit
 
 To return to the original list, hit the 'H' in the middle of the four houses.
 
-### Admin Powers
+### 🛡️ Admin Powers
 
 Browse the students of Hogwarts with the option to:
 - make 2 students of each house prefects, but only 1 of each gender - JKR putting NBs in shambles
 - make any student an inquisitor if they are from that one evil house or they are full-blood - JKR loves eugenics I guess
 - expel anyone. yep.
 
-### Searching, filtering and sorting
+### 👀 Searching, filtering and sorting
 
 #### 🔍 Searching
 
@@ -49,7 +49,7 @@ Sort by either first name, last name or house in alphabetical order by clicking 
 
 Reversable by clicking again. Default is first name a-to-z.
 
-### Hacking Hogwarts
+### 👨🏻‍💻 Hacking Hogwarts
 
 To hack Hogwarts, input *imperio* in the search field and hit enter.
 
