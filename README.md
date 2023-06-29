@@ -2,7 +2,7 @@
 
 Made as part of KEA's multimedia design, during third semester front-end development course.
 
-Assume the role of a Hogwarts system administrator at https://malthesers.github.io/hogwarts/.
+Assume the role of a Hogwarts system administrator [right here](https://malthesers.github.io/hogwarts/).
 
 There is a ~5% chance that the student list might not be displayed. If it happens, simply reload.
 
