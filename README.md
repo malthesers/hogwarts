@@ -1,4 +1,4 @@
-# Hogwarts
+# ![hogwarts crest](https://github.com/malthesers/hogwarts/blob/main/favicon/favicon-32x32.png) Hogwarts
 
 Made as part of KEA's multimedia design, during third semester front-end development course.
 
@@ -8,7 +8,7 @@ There is a ~5% chance that the student list might not be displayed. If it happen
 
 It wasn't noticed until after the assignment had been turned in, and won't be changed for ✨ eDuCaTiOnAl pUrPoSeS ✨.
 
-## Instructions
+## 📋 Instructions
 
 ### 🏠 House Navigation
 
