@@ -6,8 +6,6 @@ Assume the role of a Hogwarts system administrator [right here](https://malthese
 
 There is a ~5% chance that the student list might not be displayed. If it happens, simply reload.
 
-It wasn't noticed until after the assignment had been turned in, and won't be changed for ✨ eDuCaTiOnAl pUrPoSeS ✨.
-
 ## 📋 Instructions
 
 ### 🏠 House Navigation
