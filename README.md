@@ -4,8 +4,6 @@ Made as part of KEA's multimedia design, during third semester front-end develop
 
 Assume the role of a Hogwarts system administrator [right here](https://malthesers.github.io/hogwarts/).
 
-There is a ~5% chance that the student list might not be displayed. If it happens, simply reload.
-
 ## 📋 Instructions
 
 ### 🏠 House Navigation
