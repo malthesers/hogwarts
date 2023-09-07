@@ -19,8 +19,8 @@ To return to the original list, hit the 'H' in the middle of the four houses.
 ### 🛡️ Admin Powers
 
 Browse the students of Hogwarts with the option to:
-- make 2 students of each house prefects, but only 1 of each gender - JKR putting NBs in shambles
-- make any student an inquisitor if they are from that one evil house or they are full-blood - JKR loves eugenics I guess
+- make 2 students of each house prefects, but only 1 male and 1 female
+- make any student an inquisitor if they are from that one evil house or they are full-blood
 - expel anyone. yep.
 
 ### 👀 Searching, filtering and sorting
