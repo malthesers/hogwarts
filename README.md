@@ -1,4 +1,4 @@
-# ![hogwarts crest](https://github.com/malthesers/hogwarts/blob/main/favicon/favicon-32x32.png) Hogwarts
+# <img src="/images/crests/hogwarts-crest.svg" alt="hogwarts crest" width="30" align="center"> Hogwarts
 
 Made as part of KEA's multimedia design, during third semester front-end development course.
 
