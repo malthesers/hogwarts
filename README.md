@@ -4,7 +4,7 @@ Made as part of KEA's multimedia design, during third semester front-end develop
 
 Assume the role of a Hogwarts system administrator [right here](https://malthesers.github.io/hogwarts/).
 
-Or check out the [Vue clone](https://github.com/malthesers/hogwarts-vue).
+Or check out the [Vue](https://github.com/malthesers/hogwarts-vue) clone. Or the [React](https://github.com/malthesers/hogwarts-react) clone.
 
 ## 📋 Instructions
 
