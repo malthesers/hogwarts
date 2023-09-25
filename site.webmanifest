@@ -1,6 +1,7 @@
 {
     "name": "Hogwarts Student List",
     "short_name": "Hogwarts",
+    "start_URL": "/hogwarts/",
     "icons": [
         {
             "src": "/favicon/android-chrome-192x192.png",
