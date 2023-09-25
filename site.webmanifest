@@ -2,6 +2,7 @@
     "name": "Hogwarts Student List",
     "short_name": "Hogwarts",
     "start_url": "/hogwarts/",
+    "id": "/hogwarts/",
     "description": "Assume the role of a Hogwarts system administrator.",
     "icons": [
         {
