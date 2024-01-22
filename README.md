@@ -1,10 +1,13 @@
-# <img src="/images/crests/hogwarts-crest.svg" alt="hogwarts crest" width="30" align="center"> Hogwarts
+<h1 align="center">
+  <img src="/images/crests/hogwarts-crest.svg" alt="hogwarts crest" width="20%">
+  <p>Hogwarts</p>
+</h1>
 
-Made as part of KEA's multimedia design, during third semester front-end development course.
+<p align="center">Made as part of KEA's multimedia design, during third semester front-end development course.</p>
 
-Assume the role of a Hogwarts system administrator [right here](https://malthesers.github.io/hogwarts/).
+<p align="center">Assume the role of a Hogwarts system administrator <a href="https://malthesers.github.io/hogwarts">right here</a>.</p>
 
-Or check out the [Vue](https://github.com/malthesers/hogwarts-vue) clone. Or the [React](https://github.com/malthesers/hogwarts-react) clone.
+<p align="center">Or check out the <a href="https://github.com/malthesers/hogwarts-vue">Vue</a> clone. Or the <a href="https://github.com/malthesers/hogwarts-react">React</a> clone.</p>
 
 ## 📋 Instructions
 
