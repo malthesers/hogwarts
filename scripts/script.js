@@ -137,7 +137,7 @@ function loadFamiliesJSON() {
     .then((familyData) => {
       familyNameList = familyData;
     })
-    .then(loadStudentsJSON());
+    .then(loadStudentsJSON);
 }
 
 function loadStudentsJSON() {
